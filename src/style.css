@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-purple-dark: #493657;
+  --color-purple-light: #fcf7ff;
+  --color-gray-dark: #878c8f;
+  --color-gray-light: #c4cad0;
+  --color-teal: #18595e;
+  --font-fancy: 'Lavishly Yours', serif;
+  --font-body: 'Lato', serif;
+  --font-header: 'Playfair Display', serif;
+}
+
+h1,
+h2,
+h3 {
+  @apply font-header;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply font-bold;
+}
+
+h1 {
+  @apply text-3xl md:text-4xl;
+}
+
+h2 {
+  @apply text-2xl md:text-3xl;
+}
+
+h3 {
+  @apply text-xl md:text-2xl;
+}
+
+h4 {
+  @apply text-lg md:text-xl;
+}
+
+h5 {
+  @apply text-base md:text-lg;
+}
+
+p {
+  @apply font-body mb-2;
+}
+
+a {
+  @apply text-teal underline;
+
+  &.inverted {
+    @apply text-white no-underline;
+  }
+}
+
+button {
+  @apply cursor-pointer font-bold;
+  &.primary {
+    @apply bg-purple-dark text-white py-2 px-6 rounded-lg;
+  }
+  &.secondary {
+    @apply border-2 border-purple-dark text-purple-dark bg-purple-light py-2 px-6 rounded-lg;
+  }
+}
