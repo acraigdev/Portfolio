@@ -66,3 +66,7 @@ button {
     @apply border-2 border-purple-dark text-purple-dark bg-purple-light py-2 px-6 rounded-lg;
   }
 }
+
+.transform-container {
+  transform-box: border-box;
+}

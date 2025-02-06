@@ -1,0 +1,37 @@
+.right-to-left-enter {
+  transform: translate(110%);
+  position: absolute;
+  top: 0;
+  right: -50px;
+}
+.right-to-left-enter-active {
+  transform: translate(-5%);
+  transition: all 1s ease-in-out;
+}
+
+.right-to-left-exit {
+  transform: translate(0);
+}
+.right-to-left-exit-active {
+  transform: translate(-110%);
+  transition: all 1s ease-in-out;
+}
+
+.left-to-right-enter {
+  transform: translate(-110%);
+  position: absolute;
+  top: 0;
+  right: -50px;
+}
+.left-to-right-enter-active {
+  transform: translate(-5%);
+  transition: all 1s ease-in-out;
+}
+
+.left-to-rightt-exit {
+  transform: translate(0);
+}
+.left-to-right-exit-active {
+  transform: translate(110%);
+  transition: all 1s ease-in-out;
+}

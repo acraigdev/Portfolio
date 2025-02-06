@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import React from 'react';
+import React, { createRef } from 'react';
 import { AboutLazy } from './pages/About/AboutLazy';
 import { WorkLazy } from './pages/Work/WorkLazy';
 import { HomeLazy } from './pages/HomeLazy';
@@ -9,15 +9,18 @@ export const RouteData = {
   Home: {
     path: '/',
     title: 'Home',
+    ref: createRef<HTMLDivElement>(),
   },
   About: {
     path: '/about',
     title: 'About',
+    ref: createRef<HTMLDivElement>(),
   },
-  // Work: {
-  //   path: '/work',
-  //   title: 'Work',
-  // },
+  Work: {
+    path: '/work',
+    title: 'Work',
+    ref: createRef<HTMLDivElement>(),
+  },
   // Hobbies: {
   //   path: '/hobbies',
   //   title: 'Hobbies',
@@ -29,6 +32,7 @@ export const RouteData = {
   Contact: {
     path: '/contact',
     title: 'Contact',
+    ref: createRef<HTMLDivElement>(),
   },
 };
 
@@ -43,11 +47,11 @@ export const router = createBrowserRouter([
         handle: RouteData.About,
         element: <AboutLazy />,
       },
-      // {
-      //   path: RouteData.Work.path,
-      //   handle: RouteData.Work,
-      //   element: <WorkLazy />,
-      // },
+      {
+        path: RouteData.Work.path,
+        handle: RouteData.Work,
+        element: <WorkLazy />,
+      },
       // {
       //   path: RouteData.Hobbies.path,
       //   handle: RouteData.Hobbies,

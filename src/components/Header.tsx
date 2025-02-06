@@ -11,7 +11,7 @@ export function Header() {
     pathname === '/' ? 'text-4xl lg:text-7xl' : 'text-4xl',
   );
 
-  window.addEventListener('scroll', function (e) {
+  window.addEventListener('scroll', function () {
     if (
       document.documentElement.scrollTop > 50 ||
       document.body.scrollTop > 50
@@ -30,7 +30,7 @@ export function Header() {
       </span>
       <div>
         <HeaderLink route={RouteData.Home} />
-        {/* <HeaderLink route={RouteData.Work} /> */}
+        <HeaderLink route={RouteData.Work} />
         {/* <HeaderLink route={RouteData.Hobbies} />
         <HeaderLink route={RouteData.Projects} /> */}
         <HeaderLink route={RouteData.Contact} />
