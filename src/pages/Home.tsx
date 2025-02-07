@@ -12,7 +12,7 @@ export function Home() {
     <div>
       <Header />
       <div
-        className="my-4 md:my-8 mx-3 md:mx-auto lg:w-1/2 md:w-3/4"
+        className="my-4 md:my-8 mx-3 md:mx-auto xl:w-1/2 lg:w-3/4"
         key={pathname}
       >
         <Outlet />

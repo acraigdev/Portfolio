@@ -15,14 +15,14 @@ export function CareerPreview({ company, onLearnMore }: CareerPreviewProps) {
   });
   const end = company.endDate
     ? company.endDate.toLocaleDateString('en-US', {
-        month: 'long',
-        year: 'numeric',
-      })
+      month: 'long',
+      year: 'numeric',
+    })
     : 'Current';
 
   return (
     <button
-      className="border border-purple-light rounded-lg shadow-xs hover:scale-101 hover:shadow-sm w-3/10 flex flex-col justify-between"
+      className="border border-purple-light rounded-lg shadow-xs hover:scale-101 hover:shadow-sm flex flex-col justify-between"
       onClick={() => onLearnMore(company.id)}
     >
       <img

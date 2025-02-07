@@ -22,7 +22,7 @@ export function Header() {
     }
   });
   return (
-    <div className="bg-purple-dark text-white p-6 sticky top-0 w-full md:flex justify-between items-end">
+    <div className="bg-purple-dark text-white p-6 sticky top-0 w-full md:flex justify-between items-end z-1">
       <span
         className={`font-fancy transition-all duration-500 ease-in-out ${nameClass}`}
       >

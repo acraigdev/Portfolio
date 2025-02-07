@@ -8,6 +8,7 @@ import { CareerDetail } from './components/CareerDetail';
 import { Nullable } from '../../utils/typeHelpers';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './style.css';
+import { Icons } from '../../components/Icons';
 
 export function Work() {
   const [selectedCompany, setSelectedCompany] =
@@ -26,7 +27,6 @@ export function Work() {
   return (
     <ContentBox>
       <SpaceBetween size="l">
-        <h1 className="mb-3">Work</h1>
         <div className="relative min-h-75">
           <TransitionGroup
             // https://stackoverflow.com/a/70408067
@@ -46,15 +46,19 @@ export function Work() {
               unmountOnExit
               classNames={'right-to-left'}
             >
+
               {!selectedCompany ? (
-                <div className="flex justify-between w-full" ref={currentRef}>
-                  {companies?.map(company => (
-                    <CareerPreview
-                      company={company}
-                      onLearnMore={id => setSelectedCompany(id)}
-                      key={`preview-${company.id}`}
-                    />
-                  ))}
+                <div ref={currentRef}>
+                  <h1 className="mb-3 inline-block">Work</h1>
+                  <div className="grid gap-2 md:grid-cols-3 md:gap-6 w-full">
+                    {companies?.map(company => (
+                      <CareerPreview
+                        company={company}
+                        onLearnMore={id => setSelectedCompany(id)}
+                        key={`preview-${company.id}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               ) : (
                 <div className="w-full" ref={currentRef}>
