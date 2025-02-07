@@ -7,22 +7,18 @@
   --color-gray-light: #c4cad0;
   --color-teal: #18595e;
   --font-fancy: 'Lavishly Yours', serif;
-  --font-body: 'Lato', serif;
-  --font-header: 'Playfair Display', serif;
+  --font-body: 'Quicksand', serif;
+  --font-display-header: 'Playfair Display', serif;
+  --font-header: 'Montserrat', serif;
 }
 
-h1,
+h1 {
+  @apply font-display-header font-bold;
+}
+
 h2,
 h3 {
   @apply font-header;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  @apply font-bold;
 }
 
 h1 {
