@@ -1,12 +1,18 @@
-import React, { ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import React from 'react';
 
 interface ContentBoxProps {
+  className?: string;
   children: ReactNode;
+  inert?: boolean;
 }
 
-export function ContentBox({ children }: ContentBoxProps) {
+export function ContentBox({ className, children, inert }: ContentBoxProps) {
   return (
-    <div className="bg-white p-3 md:p-8 rounded-lg shadow-sm font-body overflow-clip transform-container mx-4">
+    <div
+      className={`bg-white p-4 md:p-15 rounded-lg shadow-sm ${className ?? ''}`}
+      inert={inert}
+    >
       {children}
     </div>
   );
