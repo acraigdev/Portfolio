@@ -9,6 +9,9 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './style.css';
 import { LayoutFrame } from '../../components/LayoutFrame';
 
+/**
+ * TODO: Figure out changing height before transition ends
+ */
 export function Work() {
   const [selectedCompany, setSelectedCompany] =
     useState<Nullable<string>>(null);

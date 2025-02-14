@@ -22,7 +22,7 @@ export function CareerPreview({ company, onLearnMore }: CareerPreviewProps) {
 
   return (
     <button
-      className="border border-gray-200 rounded-lg hover:scale-110 hover:shadow-sm flex flex-col justify-between"
+      className="border border-gray-200 rounded-lg hover:scale-110 flex flex-col justify-between"
       onClick={() => onLearnMore(company.id)}
     >
       <img

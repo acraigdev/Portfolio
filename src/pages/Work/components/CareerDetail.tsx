@@ -5,6 +5,7 @@ import { CompanyDetails } from '../../../data/work';
 import { SpaceBetween } from '../../../components/SpaceBetween';
 import { KeyValueTable } from '../../../components/KeyValueTable';
 import { getMonthYearOrCurrent } from '../../../utils/dates';
+import { Tag } from '../../../components/Tag';
 
 interface CareerDetailProps {
   id: string;
@@ -31,7 +32,7 @@ export function CareerDetail({ id, onReturn }: CareerDetailProps) {
     );
   }
   return (
-    <>
+    <SpaceBetween size="m">
       <button className="primary" onClick={() => onReturn()}>
         <SpaceBetween size="sm" direction="horizontal">
           <Icons.Arrow className="size-5 cursor-pointer -rotate-90 inline-block" />
@@ -43,6 +44,9 @@ export function CareerDetail({ id, onReturn }: CareerDetailProps) {
         className="h-20 m-auto mt-8"
         aria-hidden
       />
+      <div className="flex justify-center gap-3">
+        {detail.languages?.map(lang => <Tag tag={lang} />)}
+      </div>
       <KeyValueTable
         items={[
           {
@@ -63,6 +67,10 @@ export function CareerDetail({ id, onReturn }: CareerDetailProps) {
           },
         ]}
       />
-    </>
+      <h4>Details</h4>
+      {detail.content.map(content => (
+        <p>{content}</p>
+      ))}
+    </SpaceBetween>
   );
 }
