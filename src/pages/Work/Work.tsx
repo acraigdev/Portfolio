@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { CareerPreview } from './components/CareerPreview';
-import { SpaceBetween } from '../../components/SpaceBetween';
 import { ContentBox } from '../../components/ContentBox';
 import { CompanyPreviews } from '../../data/work';
 import { useQuery } from '@tanstack/react-query';
@@ -8,7 +7,7 @@ import { CareerDetail } from './components/CareerDetail';
 import { Nullable } from '../../utils/typeHelpers';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './style.css';
-import { Icons } from '../../components/Icons';
+import { LayoutFrame } from '../../components/LayoutFrame';
 
 export function Work() {
   const [selectedCompany, setSelectedCompany] =
@@ -25,9 +24,9 @@ export function Work() {
   //https://docs.google.com/document/d/e/2PACX-1vQMp13VDh3uL6MSRHrYXeTDu8Pl2miySH5rJjnEsgEAaKen-Pp0MkJoMXZFdL-QJ001wbNHSwLDx8hw/pub
 
   return (
-    <ContentBox>
-      <SpaceBetween size="l">
-        <div className="relative min-h-75">
+    <LayoutFrame>
+      <ContentBox className="overflow-hidden">
+        <div className="relative min-h-105">
           <TransitionGroup
             // https://stackoverflow.com/a/70408067
             childFactory={child =>
@@ -46,10 +45,9 @@ export function Work() {
               unmountOnExit
               classNames={'right-to-left'}
             >
-
               {!selectedCompany ? (
-                <div ref={currentRef}>
-                  <h1 className="mb-3 inline-block">Work</h1>
+                <div className="w-full" ref={currentRef}>
+                  <h1 className="mb-10 inline-block">Work</h1>
                   <div className="grid gap-2 md:grid-cols-3 md:gap-6 w-full">
                     {companies?.map(company => (
                       <CareerPreview
@@ -72,7 +70,7 @@ export function Work() {
             </CSSTransition>
           </TransitionGroup>
         </div>
-      </SpaceBetween>
-    </ContentBox>
+      </ContentBox>
+    </LayoutFrame>
   );
 }

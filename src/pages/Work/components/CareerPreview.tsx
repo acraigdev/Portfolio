@@ -15,14 +15,14 @@ export function CareerPreview({ company, onLearnMore }: CareerPreviewProps) {
   });
   const end = company.endDate
     ? company.endDate.toLocaleDateString('en-US', {
-      month: 'long',
-      year: 'numeric',
-    })
+        month: 'long',
+        year: 'numeric',
+      })
     : 'Current';
 
   return (
     <button
-      className="border border-purple-light rounded-lg shadow-xs hover:scale-101 hover:shadow-sm flex flex-col justify-between"
+      className="border border-gray-200 rounded-lg hover:scale-110 hover:shadow-sm flex flex-col justify-between"
       onClick={() => onLearnMore(company.id)}
     >
       <img
@@ -32,8 +32,8 @@ export function CareerPreview({ company, onLearnMore }: CareerPreviewProps) {
       />
       <div className="p-6 w-full">
         <h3>{company.name}</h3>
-        <h4>{company.title}</h4>
-        <i>
+        <h4 className="font-normal">{company.title}</h4>
+        <i className="font-normal">
           {start} - {end}
         </i>
       </div>

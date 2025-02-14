@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import React, { createRef } from 'react';
 import { AboutLazy } from './pages/About/AboutLazy';
 import { WorkLazy } from './pages/Work/WorkLazy';
-import { HomeLazy } from './pages/HomeLazy';
 import { ContactLazy } from './pages/Contact/ContactLazy';
 
 export const RouteData = {
@@ -39,32 +38,25 @@ export const RouteData = {
 export const router = createBrowserRouter([
   {
     path: RouteData.Home.path,
-    element: <HomeLazy />,
-    handle: RouteData.Home,
-    children: [
-      {
-        path: RouteData.Home.path,
-        handle: RouteData.About,
-        element: <AboutLazy />,
-      },
-      {
-        path: RouteData.Work.path,
-        handle: RouteData.Work,
-        element: <WorkLazy />,
-      },
-      // {
-      //   path: RouteData.Hobbies.path,
-      //   handle: RouteData.Hobbies,
-      // },
-      // {
-      //   path: RouteData.Projects.path,
-      //   handle: RouteData.Projects,
-      // },
-      {
-        path: RouteData.Contact.path,
-        handle: RouteData.Contact,
-        element: <ContactLazy />,
-      },
-    ],
+    handle: RouteData.About,
+    element: <AboutLazy />,
+  },
+  {
+    path: RouteData.Work.path,
+    handle: RouteData.Work,
+    element: <WorkLazy />,
+  },
+  // {
+  //   path: RouteData.Hobbies.path,
+  //   handle: RouteData.Hobbies,
+  // },
+  // {
+  //   path: RouteData.Projects.path,
+  //   handle: RouteData.Projects,
+  // },
+  {
+    path: RouteData.Contact.path,
+    handle: RouteData.Contact,
+    element: <ContactLazy />,
   },
 ]);

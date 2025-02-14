@@ -12,53 +12,57 @@ interface CareerDetailProps {
 }
 
 export function CareerDetail({ id, onReturn }: CareerDetailProps) {
-
   const { data: detail } = useQuery({
     queryKey: ['getCompanyDetails'],
     queryFn: () => CompanyDetails,
-    select: (details => details.find((company) => company.id === id))
+    select: details => details.find(company => company.id === id),
   });
 
   if (!detail) {
-    return <SpaceBetween
-      direction="horizontal"
-      size="sm"
-      className="text-red-700 w-full mt-4"
-    >
-      <Icons.Error className="size-6 md:size-8 inline-block" />
-      Something went wrong getting the details.
-    </SpaceBetween>
+    return (
+      <SpaceBetween
+        direction="horizontal"
+        size="sm"
+        className="text-red-700 w-full mt-4"
+      >
+        <Icons.Error className="size-6 md:size-8 inline-block" />
+        Something went wrong getting the details.
+      </SpaceBetween>
+    );
   }
   return (
     <>
-      <button className='primary'><SpaceBetween size="sm" direction='horizontal'><Icons.Arrow
-        onClick={() => onReturn()}
-        className="size-5 cursor-pointer -rotate-90 inline-block"
-      />Return</SpaceBetween></button>
+      <button className="primary" onClick={() => onReturn()}>
+        <SpaceBetween size="sm" direction="horizontal">
+          <Icons.Arrow className="size-5 cursor-pointer -rotate-90 inline-block" />
+          Return
+        </SpaceBetween>
+      </button>
       <img
         src={require(`../../../assets/${detail.logo}`)}
         className="h-20 m-auto mt-8"
         aria-hidden
       />
-      <KeyValueTable items={[
-        {
-          key: 'Company',
-          value: detail.name
-        },
-        {
-          key: 'Title',
-          value: detail.title
-        },
-        {
-          key: 'Start date',
-          value: getMonthYearOrCurrent(detail.startDate)
-        },
-        {
-          key: 'End date',
-          value: getMonthYearOrCurrent(detail.endDate)
-        }
-      ]} />
-
+      <KeyValueTable
+        items={[
+          {
+            key: 'Company',
+            value: detail.name,
+          },
+          {
+            key: 'Title',
+            value: detail.title,
+          },
+          {
+            key: 'Start date',
+            value: getMonthYearOrCurrent(detail.startDate),
+          },
+          {
+            key: 'End date',
+            value: getMonthYearOrCurrent(detail.endDate),
+          },
+        ]}
+      />
     </>
   );
 }
