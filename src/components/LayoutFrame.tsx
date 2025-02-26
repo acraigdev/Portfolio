@@ -1,13 +1,15 @@
 import React, { ReactNode, useEffect } from 'react';
 import { Header } from '../components/Header';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useMatches } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 
 export function LayoutFrame({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
+  const route = useMatches()[0]?.handle;
   useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: pathname });
-  }, [pathname]);
+    ReactGA.send({ hitType: 'pageview', page: route?.path });
+    if (route?.title) document.title = `ACraig - ${route.title}`;
+  }, [route]);
   return (
     <div>
       <Header />

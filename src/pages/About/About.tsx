@@ -7,6 +7,7 @@ import { LayoutFrame } from '../../components/LayoutFrame';
 export function About() {
   let diff = (new Date().valueOf() - new Date('04/01/2016').valueOf()) / 1000;
   diff /= 60 * 60 * 24;
+
   return (
     <LayoutFrame>
       <ContentBox>

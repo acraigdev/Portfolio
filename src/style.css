@@ -8,17 +8,13 @@
   --color-teal: #18595e;
   --font-fancy: 'Lavishly Yours', serif;
   --font-body: 'Quicksand', serif;
-  --font-display-header: 'Playfair Display', serif;
   --font-header: 'Montserrat', serif;
 }
 
-h1 {
-  @apply font-display-header font-bold;
-}
-
+h1,
 h2,
 h3 {
-  @apply font-header;
+  @apply font-header font-bold;
 }
 
 h1 {

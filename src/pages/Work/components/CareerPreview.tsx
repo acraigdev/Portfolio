@@ -1,7 +1,8 @@
 import React from 'react';
 import { Icons } from '../../../components/Icons';
 import { SpaceBetween } from '../../../components/SpaceBetween';
-import { CompanyPreview } from '../../../data/work';
+import { CompanyPreview } from '../../../utils/dataTypes';
+import { getMonthYearOrCurrent } from '../../../utils/dates';
 
 interface CareerPreviewProps {
   company: CompanyPreview;
@@ -9,20 +10,9 @@ interface CareerPreviewProps {
 }
 
 export function CareerPreview({ company, onLearnMore }: CareerPreviewProps) {
-  const start = company.startDate.toLocaleDateString('en-US', {
-    month: 'long',
-    year: 'numeric',
-  });
-  const end = company.endDate
-    ? company.endDate.toLocaleDateString('en-US', {
-        month: 'long',
-        year: 'numeric',
-      })
-    : 'Current';
-
   return (
     <button
-      className="border border-gray-200 rounded-lg hover:scale-110 flex flex-col justify-between"
+      className="border border-gray-200 rounded-lg hover:border-gray-400 flex flex-col justify-between"
       onClick={() => onLearnMore(company.id)}
     >
       <img
@@ -34,7 +24,8 @@ export function CareerPreview({ company, onLearnMore }: CareerPreviewProps) {
         <h3>{company.name}</h3>
         <h4 className="font-normal">{company.title}</h4>
         <i className="font-normal">
-          {start} - {end}
+          {getMonthYearOrCurrent(company.startDate)} -{' '}
+          {getMonthYearOrCurrent(company.endDate)}
         </i>
       </div>
       <div className="w-full bg-purple-dark block p-6 rounded-b-lg text-white">

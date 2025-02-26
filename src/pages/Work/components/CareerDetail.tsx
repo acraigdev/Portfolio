@@ -1,23 +1,31 @@
 import React from 'react';
 import { Icons } from '../../../components/Icons';
 import { useQuery } from '@tanstack/react-query';
-import { CompanyDetails } from '../../../data/work';
+import { Award, CompanyDetail, Promo } from '../../../utils/dataTypes';
 import { SpaceBetween } from '../../../components/SpaceBetween';
 import { KeyValueTable } from '../../../components/KeyValueTable';
 import { getMonthYearOrCurrent } from '../../../utils/dates';
 import { Tag } from '../../../components/Tag';
+import { Nullable } from '../../../utils/typeHelpers';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../..';
 
 interface CareerDetailProps {
-  id: string;
+  id: Nullable<string>;
   onReturn: () => void;
 }
 
 export function CareerDetail({ id, onReturn }: CareerDetailProps) {
   const { data: detail } = useQuery({
-    queryKey: ['getCompanyDetails'],
-    queryFn: () => CompanyDetails,
-    select: details => details.find(company => company.id === id),
+    queryKey: ['getCompanyDetails', id],
+    enabled: !!id,
+    queryFn: () => {
+      return getDoc(doc(db, 'careerDetail', id!));
+    },
+    select: details => details.data() as CompanyDetail,
   });
+
+  if (!id) return <></>;
 
   if (!detail) {
     return (
@@ -44,8 +52,8 @@ export function CareerDetail({ id, onReturn }: CareerDetailProps) {
         className="h-20 m-auto mt-8"
         aria-hidden
       />
-      <div className="flex justify-center gap-3">
-        {detail.languages?.map(lang => <Tag tag={lang} />)}
+      <div className="flex justify-center gap-3 flex-wrap">
+        {detail.languages?.map(lang => <Tag key={lang} tag={lang} />)}
       </div>
       <KeyValueTable
         items={[
@@ -67,10 +75,45 @@ export function CareerDetail({ id, onReturn }: CareerDetailProps) {
           },
         ]}
       />
-      <h4>Details</h4>
-      {detail.content.map(content => (
-        <p>{content}</p>
+      <h4 className="font-bold text-purple-dark">Details</h4>
+      <ul className="list-disc list-inside">
+        {detail.content.map((content, i) => (
+          <li key={i} className="mb-3">
+            <span className="font-body">{content}</span>
+          </li>
+        ))}
+      </ul>
+      <h4 className="font-bold text-purple-dark">Recognition</h4>
+      {detail.recognition?.map(rec => <AwardDetail key={rec.title} {...rec} />)}
+      <h4 className="font-bold text-purple-dark">Promotion History</h4>
+      {detail.promotion?.map(promo => (
+        <PromoDetail key={promo.title} {...promo} />
       ))}
     </SpaceBetween>
+  );
+}
+
+function AwardDetail({ date, title, details }: Award) {
+  return (
+    <div className="flex gap-4 items-center">
+      <Icons.Trophy className="size-6" />
+      <SpaceBetween size="xs" className="w-4/5">
+        <h5>
+          {title} - <i>{getMonthYearOrCurrent(date)}</i>
+        </h5>
+        {details}
+      </SpaceBetween>
+    </div>
+  );
+}
+
+function PromoDetail({ startDate, endDate, title }: Promo) {
+  return (
+    <div>
+      <h5>{title}</h5>
+      <i>
+        {getMonthYearOrCurrent(startDate)} - {getMonthYearOrCurrent(endDate)}
+      </i>
+    </div>
   );
 }

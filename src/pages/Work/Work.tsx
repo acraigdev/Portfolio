@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { CareerPreview } from './components/CareerPreview';
 import { ContentBox } from '../../components/ContentBox';
-import { CompanyPreviews } from '../../data/work';
+import { CompanyPreview } from '../../utils/dataTypes';
 import { useQuery } from '@tanstack/react-query';
 import { CareerDetail } from './components/CareerDetail';
 import { Nullable } from '../../utils/typeHelpers';
@@ -9,35 +9,54 @@ import './style.css';
 import { LayoutFrame } from '../../components/LayoutFrame';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-
+import { Icons } from '../../components/Icons';
+import { db } from '../..';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 /**
- * TODO: Hover cuts off, more space between items
+ * TODO: last item doesn't animate
  */
 export function Work() {
   const [selectedCompany, setSelectedCompany] =
-    useState<Nullable<string>>('aws');
+    useState<Nullable<string>>(null);
+
   const { data: companies } = useQuery({
     queryKey: ['getCareerPreview'],
-    queryFn: () => CompanyPreviews,
+    queryFn: () => {
+      return getDocs(
+        query(collection(db, 'careerPreview'), orderBy('startDate', 'desc')),
+      );
+    },
+    select: res => {
+      return res.docs.map(doc => doc.data()) as Array<CompanyPreview>;
+    },
   });
 
   const carousel = useRef<AliceCarousel>(null);
 
-  //https://docs.google.com/document/d/e/2PACX-1vQMp13VDh3uL6MSRHrYXeTDu8Pl2miySH5rJjnEsgEAaKen-Pp0MkJoMXZFdL-QJ001wbNHSwLDx8hw/pub
-
   return (
     <LayoutFrame>
-      <ContentBox className="overflow-hidden">
-        <div className="relative min-h-105 duration-300">
+      <ContentBox className="overflow-hidden" noPadding>
+        <div className="relative min-h-105">
           <AliceCarousel
-            mouseTracking
             ref={carousel}
             disableDotsControls
             disableButtonsControls
             items={[
-              <div>
-                <h1 className="mb-10 inline-block">Work</h1>
-                <div className="grid gap-2 md:grid-cols-3 md:gap-6">
+              <div className="p-4 md:p-15">
+                <h1>Work</h1>
+                <p>
+                  Select a company to view my work history or check out my
+                  resume directly{' '}
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://docs.google.com/document/d/e/2PACX-1vQMp13VDh3uL6MSRHrYXeTDu8Pl2miySH5rJjnEsgEAaKen-Pp0MkJoMXZFdL-QJ001wbNHSwLDx8hw/pub"
+                  >
+                    here
+                    <Icons.External className="size-4 inline ml-1" />
+                  </a>
+                </p>
+                <div className="mt-5 grid gap-2 md:grid-cols-3 md:gap-6">
                   {companies?.map(company => (
                     <CareerPreview
                       company={company}
@@ -50,17 +69,18 @@ export function Work() {
                   ))}
                 </div>
               </div>,
-              <div>
+              <div className="p-4 md:p-15">
                 <CareerDetail
                   id={selectedCompany}
                   onReturn={() => {
                     carousel?.current?.slidePrev();
+                    setSelectedCompany(null);
                   }}
                   key="detail"
                 />
               </div>,
             ]}
-          ></AliceCarousel>
+          />
         </div>
       </ContentBox>
     </LayoutFrame>
