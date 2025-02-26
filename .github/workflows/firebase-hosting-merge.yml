@@ -8,9 +8,6 @@ on:
       - main
 env:
   REACT_APP_apiKey: ${{ secrets.REACT_APP_APIKEY }}
-  REACT_APP_authDomain: 'acraigdev-8d7d6.firebaseapp.com'
-  REACT_APP_projectId: 'acraigdev-8d7d6'
-  REACT_APP_storageBucket: 'acraigdev-8d7d6.firebasestorage.app'
   REACT_APP_messagingSenderId: ${{secrets.REACT_APP_MESSAGINGSENDERID}}
   REACT_APP_appId: ${{secrets.REACT_APP_APPID}}
   REACT_APP_measurementId: ${{secrets.REACT_APP_MEASUREMENTID}}
