@@ -23,8 +23,8 @@ export function SpaceBetween({
         <span
           className={
             direction === 'vertical'
-              ? `${margin} block align-middle`
-              : `${margin} inline align-middle`
+              ? `${margin} block`
+              : `${margin} inline-block align-middle`
           }
         >
           {child}

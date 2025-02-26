@@ -10,6 +10,7 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 // https://webpack.js.org/plugins/html-webpack-plugin/
 import HtmlWebPackPlugin from 'html-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 
 const packageFolder = path.resolve(__dirname, 'build');
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -23,7 +24,6 @@ module.exports = {
     aggregateTimeout: 1000,
     ignored: ['**/node_modules'],
   },
-
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
   // https://webpack.js.org/configuration/dev-server/
   devServer: {
@@ -142,7 +142,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react',
     }),
-
+    new Dotenv({ path: path.join(__dirname, '.env.local') }),
     // build html file
     new HtmlWebPackPlugin({
       template: './src/index.html',

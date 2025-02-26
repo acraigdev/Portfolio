@@ -7,22 +7,14 @@
   --color-gray-light: #c4cad0;
   --color-teal: #18595e;
   --font-fancy: 'Lavishly Yours', serif;
-  --font-body: 'Lato', serif;
-  --font-header: 'Playfair Display', serif;
+  --font-body: 'Quicksand', serif;
+  --font-header: 'Montserrat', serif;
 }
 
 h1,
 h2,
 h3 {
-  @apply font-header;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  @apply font-bold;
+  @apply font-header font-bold;
 }
 
 h1 {
@@ -65,4 +57,8 @@ button {
   &.secondary {
     @apply border-2 border-purple-dark text-purple-dark bg-purple-light py-2 px-6 rounded-lg;
   }
+}
+
+.transform-container {
+  transform-box: border-box;
 }
