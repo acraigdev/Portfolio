@@ -16,7 +16,11 @@ interface CareerDetailProps {
 }
 
 export function CareerDetail({ id, onReturn }: CareerDetailProps) {
-  const { data: detail } = useQuery({
+  const {
+    data: detail,
+    isError,
+    isLoading,
+  } = useQuery({
     queryKey: ['getCompanyDetails', id],
     enabled: !!id,
     queryFn: () => {
@@ -25,9 +29,10 @@ export function CareerDetail({ id, onReturn }: CareerDetailProps) {
     select: details => details.data() as CompanyDetail,
   });
 
-  if (!id) return <></>;
+  // TODO: Spinner
+  if (!id || isLoading) return <></>;
 
-  if (!detail) {
+  if (isError) {
     return (
       <SpaceBetween
         direction="horizontal"
@@ -47,46 +52,50 @@ export function CareerDetail({ id, onReturn }: CareerDetailProps) {
           Return
         </SpaceBetween>
       </button>
-      <img
-        src={require(`../../../assets/${detail.logo}`)}
-        className="h-20 m-auto mt-8"
-        aria-hidden
-      />
+      {detail?.logo && (
+        <img
+          src={require(`../../../assets/${detail.logo}`)}
+          className="h-20 m-auto mt-8"
+          aria-hidden
+        />
+      )}
       <div className="flex justify-center gap-3 flex-wrap">
-        {detail.languages?.map(lang => <Tag key={lang} tag={lang} />)}
+        {detail?.languages?.map(lang => <Tag key={lang} tag={lang} />)}
       </div>
       <KeyValueTable
         items={[
           {
             key: 'Company',
-            value: detail.name,
+            value: detail?.name,
           },
           {
             key: 'Title',
-            value: detail.title,
+            value: detail?.title,
           },
           {
             key: 'Start date',
-            value: getMonthYearOrCurrent(detail.startDate),
+            value: getMonthYearOrCurrent(detail?.startDate),
           },
           {
             key: 'End date',
-            value: getMonthYearOrCurrent(detail.endDate),
+            value: getMonthYearOrCurrent(detail?.endDate),
           },
         ]}
       />
       <h4 className="font-bold text-purple-dark">Details</h4>
       <ul className="list-disc list-inside">
-        {detail.content.map((content, i) => (
+        {detail?.content.map((content, i) => (
           <li key={i} className="mb-3">
             <span className="font-body">{content}</span>
           </li>
         ))}
       </ul>
       <h4 className="font-bold text-purple-dark">Recognition</h4>
-      {detail.recognition?.map(rec => <AwardDetail key={rec.title} {...rec} />)}
+      {detail?.recognition?.map(rec => (
+        <AwardDetail key={rec.title} {...rec} />
+      ))}
       <h4 className="font-bold text-purple-dark">Promotion History</h4>
-      {detail.promotion?.map(promo => (
+      {detail?.promotion?.map(promo => (
         <PromoDetail key={promo.title} {...promo} />
       ))}
     </SpaceBetween>

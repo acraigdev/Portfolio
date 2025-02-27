@@ -124,7 +124,6 @@ export function Contact({}: ContactProps) {
               onValChange={val => setMessage(val)}
               validationDelegate={messageDelegate}
               validation={val => {
-                console.log(val?.match(MESSAGE_PATTERN));
                 return Boolean(val !== '' && val?.match(MESSAGE_PATTERN));
               }}
               validationError={'Enter a message.'}

@@ -12,7 +12,6 @@ import { getFirestore } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-console.log(process.env.REACT_APP_apiKey);
 // Initialize Firebase
 const app = initializeApp({
   apiKey: process.env.REACT_APP_apiKey,
