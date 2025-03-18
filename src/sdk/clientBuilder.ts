@@ -9,7 +9,7 @@ export class SDKClient {
   private base: string;
 
   constructor({ base }: { base: string }) {
-    this.base = base;
+    this.base = `https://proxy-nhvsjqhtua-uc.a.run.app/${base}`;
   }
 
   buildQueryString(queries?: Record<string, string | Array<string>>) {
