@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import React, { createRef } from 'react';
+import React, { createRef, lazy } from 'react';
 import { AboutLazy } from './pages/About/AboutLazy';
 import { WorkLazy } from './pages/Work/WorkLazy';
 import { ContactLazy } from './pages/Contact/ContactLazy';
+import { RandomLazy } from './pages/Random/RandomLazy';
 
 export const RouteData = {
   Home: {
@@ -33,6 +34,10 @@ export const RouteData = {
     title: 'Contact',
     ref: createRef<HTMLDivElement>(),
   },
+  Random: {
+    path: '/random',
+    title: 'Random Projects',
+  },
 };
 
 export const router = createBrowserRouter([
@@ -58,5 +63,9 @@ export const router = createBrowserRouter([
     path: RouteData.Contact.path,
     handle: RouteData.Contact,
     element: <ContactLazy />,
+  },
+  {
+    path: RouteData.Random.path,
+    element: <RandomLazy />,
   },
 ]);

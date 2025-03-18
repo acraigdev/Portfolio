@@ -14,7 +14,7 @@ export function LayoutFrame({ children }: { children: ReactNode }) {
     <div>
       <Header />
       <div
-        className="my-4 md:my-8 mx-3 md:mx-auto xl:w-2/3 lg:w-3/4"
+        className="my-4 md:my-8 mx-3 lg:mx-auto xl:w-2/3 lg:w-3/4"
         key={pathname}
       >
         {children}
