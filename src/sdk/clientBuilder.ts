@@ -55,9 +55,9 @@ export class SDKClient {
         const contentType = res.headers.get('content-type');
         if (contentType && contentType.indexOf('application/json') !== -1) {
           return res.json();
-        } else {
-          return res.text();
         }
+        if (contentType === 'image/jpeg') return res.blob();
+        return res.text();
       })
       .catch(err => console.error({ err }));
   }

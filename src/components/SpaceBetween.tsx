@@ -20,7 +20,7 @@ export function SpaceBetween({
 }: SpaceBetweenProps) {
   return (
     <div
-      className={`${getGap(size)} flex ${direction === 'vertical' ? 'flex-col' : 'flex-row'} ${alignOverride ? alignOverride : 'items-left'} ${className ?? ''}`}
+      className={`${getGap(size)} flex ${direction === 'vertical' ? 'flex-col' : 'flex-row'} ${alignOverride ? alignOverride : 'items-start'} ${className ?? ''}`}
     >
       {Children.map(children, child => !!child && <>{child}</>)}
     </div>

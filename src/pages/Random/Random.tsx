@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import { LayoutFrame } from '../../components/LayoutFrame';
 import { ContentBox } from '../../components/ContentBox';
 import { Dropdown } from '../../components/Dropdown';
@@ -21,8 +21,10 @@ const ProjectLabels: Record<Project, string> = {
 };
 
 export function Random() {
-  const [selectedProject, setSelectedProject] =
-    useState<Nullable<Project>>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedProject = searchParams.get('project')
+    ? (searchParams.get('project') as Project)
+    : null;
   return (
     <LayoutFrame>
       <ContentBox>
@@ -34,7 +36,9 @@ export function Random() {
               value: key,
             }))}
             selected={selectedProject}
-            onSelectionChange={item => setSelectedProject(item as Project)}
+            onSelectionChange={item =>
+              setSearchParams({ project: String(item) })
+            }
           />
           <SelectedProject project={selectedProject} />
         </SpaceBetween>

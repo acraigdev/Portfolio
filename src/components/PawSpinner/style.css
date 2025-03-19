@@ -1,0 +1,77 @@
+.paw-spinner {
+  margin: 0 auto;
+
+  &.inline {
+    display: inline-block;
+  }
+  &.small {
+    transform: scale(0.5);
+  }
+  .toes {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+    transform-origin: 50% 150%;
+
+    &.loading {
+      animation: rotateAround 500ms linear infinite;
+    }
+
+    .bean {
+      width: 6px;
+      height: 9px;
+      background: white;
+      border-radius: 100%;
+
+      &.dark {
+        background: #493657;
+      }
+
+      &:first-child,
+      &:last-child {
+        margin-top: 6px;
+      }
+    }
+  }
+  .pad {
+    width: 19px;
+    height: 15px;
+    border-radius: 100%;
+    margin: 0 auto;
+    position: relative;
+
+    &:before,
+    &:after {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 0;
+      width: 10px;
+      height: 15px;
+      background: white;
+      border-radius: 17px 3px 0px 15px / 23px 2px 27px 11px;
+      transform: skewY(-20deg);
+    }
+
+    &.dark:before,
+    &.dark:after {
+      background: #493657;
+    }
+
+    &:after {
+      left: 0;
+      transform: skewY(20deg) scaleX(-1);
+      transform-origin: 97%;
+      top: -1.7px;
+    }
+  }
+}
+
+@keyframes rotateAround {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
