@@ -89,7 +89,7 @@ export function Contact({}: ContactProps) {
         </p>
         <SpaceBetween direction="horizontal" size="sm" className="mb-6">
           <Icons.Envelope className="size-6 inline-block" />
-          <a href="mailto:alexandriamcraig@gmail.com">
+          <a className="link" href="mailto:alexandriamcraig@gmail.com">
             alexandriamcraig@gmail.com
           </a>
         </SpaceBetween>

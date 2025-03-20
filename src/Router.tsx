@@ -4,6 +4,7 @@ import { AboutLazy } from './pages/About/AboutLazy';
 import { WorkLazy } from './pages/Work/WorkLazy';
 import { ContactLazy } from './pages/Contact/ContactLazy';
 import { RandomLazy } from './pages/Random/RandomLazy';
+import { ProjectsLazy } from './pages/Projects/ProjectsLazy';
 
 export const RouteData = {
   Home: {
@@ -21,14 +22,15 @@ export const RouteData = {
     title: 'Work',
     ref: createRef<HTMLDivElement>(),
   },
+  // MUST update header for mobile when this is added
   // Hobbies: {
   //   path: '/hobbies',
   //   title: 'Hobbies',
   // },
-  // Projects: {
-  //   path: '/projects',
-  //   title: 'Projects',
-  // },
+  Projects: {
+    path: '/projects',
+    title: 'Projects',
+  },
   Contact: {
     path: '/contact',
     title: 'Contact',
@@ -55,10 +57,11 @@ export const router = createBrowserRouter([
   //   path: RouteData.Hobbies.path,
   //   handle: RouteData.Hobbies,
   // },
-  // {
-  //   path: RouteData.Projects.path,
-  //   handle: RouteData.Projects,
-  // },
+  {
+    path: RouteData.Projects.path,
+    handle: RouteData.Projects,
+    element: <ProjectsLazy />,
+  },
   {
     path: RouteData.Contact.path,
     handle: RouteData.Contact,

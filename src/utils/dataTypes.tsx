@@ -29,3 +29,19 @@ export interface CompanyDetail extends CompanyPreview {
   tools?: Array<string>;
   languages?: Array<string>;
 }
+
+export type Project = {
+  title: string;
+  code_url?: string;
+  demo?: Demo;
+  description: string;
+  tech: Array<string>;
+  date: Timestamp;
+};
+
+export type Demo = {
+  url?: string;
+  details?: string;
+  title?: string;
+  image?: string;
+};

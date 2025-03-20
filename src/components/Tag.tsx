@@ -8,7 +8,7 @@ interface TagProps {
 
 export function Tag({ tag, onTagRemove }: TagProps) {
   return (
-    <span className="bg-purple-dark text-white py-1 px-2 rounded-sm min-w-fit">
+    <span className="bg-teal text-white py-1 px-2 rounded-sm min-w-fit">
       <span className={onTagRemove ? 'pr-1' : ''}>{tag}</span>
       {!!onTagRemove && (
         <button

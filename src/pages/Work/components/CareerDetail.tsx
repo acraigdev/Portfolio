@@ -59,29 +59,29 @@ export function CareerDetail({ id, onReturn }: CareerDetailProps) {
           aria-hidden
         />
       )}
-      <div className="flex justify-center gap-3 flex-wrap">
+      <div className="flex justify-center gap-3 flex-wrap w-full">
         {detail?.languages?.map(lang => <Tag key={lang} tag={lang} />)}
+        <KeyValueTable
+          items={[
+            {
+              key: 'Company',
+              value: detail?.name,
+            },
+            {
+              key: 'Title',
+              value: detail?.title,
+            },
+            {
+              key: 'Start date',
+              value: getMonthYearOrCurrent(detail?.startDate),
+            },
+            {
+              key: 'End date',
+              value: getMonthYearOrCurrent(detail?.endDate),
+            },
+          ]}
+        />
       </div>
-      <KeyValueTable
-        items={[
-          {
-            key: 'Company',
-            value: detail?.name,
-          },
-          {
-            key: 'Title',
-            value: detail?.title,
-          },
-          {
-            key: 'Start date',
-            value: getMonthYearOrCurrent(detail?.startDate),
-          },
-          {
-            key: 'End date',
-            value: getMonthYearOrCurrent(detail?.endDate),
-          },
-        ]}
-      />
       <h4 className="font-bold text-purple-dark">Details</h4>
       <ul className="list-disc list-inside">
         {detail?.content.map((content, i) => (

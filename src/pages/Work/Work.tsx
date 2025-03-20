@@ -13,7 +13,7 @@ import { Icons } from '../../components/Icons';
 import { db } from '../..';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 /**
- * TODO: last item doesn't animate
+ * TODO: last item doesn't animate, custom implementation and add query param so back button works
  */
 export function Work() {
   const [selectedCompany, setSelectedCompany] =
@@ -48,6 +48,7 @@ export function Work() {
                   Select a company to view my work history or check out my
                   resume directly{' '}
                   <a
+                    className="link"
                     target="_blank"
                     rel="noopener noreferrer"
                     href="https://docs.google.com/document/d/e/2PACX-1vQMp13VDh3uL6MSRHrYXeTDu8Pl2miySH5rJjnEsgEAaKen-Pp0MkJoMXZFdL-QJ001wbNHSwLDx8hw/pub"

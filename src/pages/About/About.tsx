@@ -16,7 +16,7 @@ export function About() {
           <p>
             Front end engineer in Colorado Springs, CO. Currently working at
             Amazon Web Services on the{' '}
-            <a href="https://aws.amazon.com/image-builder/">
+            <a className="link" href="https://aws.amazon.com/image-builder/">
               EC2 Image Builder
             </a>{' '}
             team.

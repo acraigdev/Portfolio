@@ -16,8 +16,8 @@ export function Header() {
       <div>
         <HeaderLink route={RouteData.Home} />
         <HeaderLink route={RouteData.Work} />
-        {/* <HeaderLink route={RouteData.Hobbies} />
-        <HeaderLink route={RouteData.Projects} /> */}
+        {/* <HeaderLink route={RouteData.Hobbies} /> */}
+        <HeaderLink route={RouteData.Projects} />
         <HeaderLink route={RouteData.Contact} />
       </div>
     </div>

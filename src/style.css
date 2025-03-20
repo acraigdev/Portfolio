@@ -5,7 +5,7 @@
   --color-purple-light: #fcf7ff;
   --color-gray-dark: #878c8f;
   --color-gray-light: #c4cad0;
-  --color-teal: #18595e;
+  --color-teal: #005e66;
   --font-fancy: 'Lavishly Yours', serif;
   --font-body: 'Quicksand', serif;
   --font-header: 'Montserrat', serif;
@@ -41,7 +41,7 @@ p {
   @apply font-body mb-2;
 }
 
-a {
+a.link {
   @apply text-teal underline;
 
   &.inverted {
