@@ -8,7 +8,7 @@ export function RandomDuck() {
   const { data: duck, isFetching } = useQuery({ ...RandomDuckQueries.quack() });
   const [imgLoading, setImgLoading] = useState(true);
   return (
-    <div className="m-auto p-3 border border-gray-400 rounded-lg w-1/2 flex flex-col">
+    <div className="m-auto p-3 border border-gray-400 rounded-lg w-full lg:w-1/2 flex flex-col">
       {(imgLoading || isFetching) && <div className="loader m-auto my-5"></div>}
       {duck?.url && (
         <img

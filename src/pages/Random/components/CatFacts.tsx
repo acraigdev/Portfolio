@@ -24,7 +24,7 @@ export function CatFacts() {
   return (
     <>
       <div className="relative w-full h-36">
-        <div className="absolute z-20 text-center w-full translate-y-full font-bold p-1 text-xl">
+        <div className="absolute z-20 text-center w-full mt-4 font-bold p-1 text-xl">
           {randomCat?.facts[0]}
         </div>
         <div className="absolute bg-white opacity-40 h-full w-full z-10"></div>
