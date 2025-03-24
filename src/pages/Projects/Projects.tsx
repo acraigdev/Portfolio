@@ -37,11 +37,13 @@ export function Projects() {
     <LayoutFrame>
       <ContentBox>
         <SpaceBetween size="m">
-          <h1 className="mb-4">Projects</h1>
-          <p>
-            A collection of personal development projects I've worked on over
-            the years.
-          </p>
+          <div>
+            <h1 className="mb-4">Projects</h1>
+            <p>
+              A collection of personal development projects I've worked on over
+              the years.
+            </p>
+          </div>
           {projects?.map(project => (
             <ProjectSection
               key={project.title}

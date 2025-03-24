@@ -44,7 +44,7 @@ export function Work() {
             className={`grow-0 shrink-0 basis-full p-4 md:p-15 ${queryCompany ? 'right-to-left' : 'left-to-right'}`}
           >
             <div ref={previewRef}>
-              <h1>Work</h1>
+              <h1 className="mb-4">Work</h1>
               <p>
                 Select a company to view my work history or check out my resume
                 directly{' '}
