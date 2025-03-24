@@ -57,7 +57,7 @@ export function Work() {
                     <Icons.External className="size-4 inline ml-1" />
                   </a>
                 </p>
-                <div className="mt-5 grid gap-2 md:grid-cols-3 md:gap-6">
+                <div className="mt-5 grid gap-2 md:grid-cols-3 md:gap-10">
                   {companies?.map(company => (
                     <CareerPreview
                       company={company}
