@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import * as RandomDuckQueries from '../../../sdk/RandomDuckQueries';
 import { queryClient } from '../../../utils/queryClient';
+import { Button } from '../../../components/Button';
 
 // TODO: UI between getting data and fetching image
 export function RandomDuck() {
@@ -17,16 +18,15 @@ export function RandomDuck() {
           onLoad={() => setImgLoading(false)}
         />
       )}
-      <button
-        className="primary"
+      <Button
+        variant="primary"
         disabled={isFetching}
         onClick={() => {
           queryClient.invalidateQueries(RandomDuckQueries.quack());
           setImgLoading(true);
         }}
-      >
-        Quack!
-      </button>
+        label="Quack!"
+      ></Button>
     </div>
   );
 }

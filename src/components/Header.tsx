@@ -8,11 +8,11 @@ import { RouteData } from '../Router';
 export function Header() {
   return (
     <div className="bg-purple-dark text-white p-6 sticky top-0 w-full md:flex justify-between items-end z-1">
-      <span
+      <div
         className={`font-fancy transition-all duration-500 ease-in-out text-5xl lg:text-7xl`}
       >
         Alexandria Craig
-      </span>
+      </div>
       <div>
         <HeaderLink route={RouteData.Home} />
         <HeaderLink route={RouteData.Work} />

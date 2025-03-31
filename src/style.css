@@ -30,15 +30,19 @@ h3 {
 }
 
 h4 {
-  @apply text-lg md:text-xl;
+  @apply font-body text-lg md:text-xl;
 }
 
 h5 {
-  @apply text-base md:text-lg;
+  @apply font-body text-base md:text-lg;
 }
 
 p {
   @apply font-body mb-2;
+}
+
+span {
+  @apply font-body;
 }
 
 a.link {

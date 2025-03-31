@@ -29,7 +29,7 @@ module.exports = {
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
   // https://webpack.js.org/configuration/dev-server/
   devServer: {
-    port: 3000,
+    port: 3001,
     allowedHosts: 'all',
     hot: true,
     historyApiFallback: true,

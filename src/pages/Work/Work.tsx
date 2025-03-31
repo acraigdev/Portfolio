@@ -34,7 +34,7 @@ export function Work() {
 
   const previewRef = useRef<HTMLDivElement>(null);
   const previewHeight = previewRef.current?.clientHeight;
-  const [detailHeight, setDetailHeight] = useState<Number>();
+  const [detailHeight, setDetailHeight] = useState<Nullable<Number>>(null);
 
   return (
     <LayoutFrame>
@@ -91,6 +91,7 @@ export function Work() {
                     onReturn={() => {
                       setSearchParams();
                       setTimeout(() => {
+                        setDetailHeight(null);
                         setSelectedCompany(null);
                       }, 1000);
                     }}

@@ -55,12 +55,14 @@ export function About() {
           </p>
         </Section>
         <Section>
-          <i>
-            This portfolio is a continuous work in progress to learn new
-            technologies. Additional information will be added, but please feel
-            free to reach out directly if you're seeking a highly motivated and
-            passionate front end engineer!
-          </i>
+          <p>
+            <i>
+              This portfolio is a continuous work in progress to learn new
+              technologies. Additional information will be added, but please
+              feel free to reach out directly if you're seeking a highly
+              motivated and passionate front end engineer!
+            </i>
+          </p>
         </Section>
       </ContentBox>
     </LayoutFrame>

@@ -1,20 +1,20 @@
 import React, { RefObject, useEffect, useRef } from 'react';
 import { Icons } from '../../../components/Icons';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Award, CompanyDetail, Promo } from '../../../utils/dataTypes';
 import { SpaceBetween } from '../../../components/SpaceBetween';
 import { KeyValueTable } from '../../../components/KeyValueTable';
 import { getMonthYearOrCurrent } from '../../../utils/dates';
 import { Tag } from '../../../components/Tag';
-import { Maybe, Nullable } from '../../../utils/typeHelpers';
+import { Nullable } from '../../../utils/typeHelpers';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../..';
 
 interface CareerDetailProps {
   id: Nullable<string>;
   onReturn: () => void;
-  detailHeight: Maybe<Number>;
-  onDetailHeight: (height: Maybe<Number>) => void;
+  detailHeight: Nullable<Number>;
+  onDetailHeight: (height: Nullable<Number>) => void;
 }
 
 export function CareerDetail({
@@ -55,15 +55,19 @@ export function CareerDetail({
     <div ref={detailRef}>
       <SpaceBetween size="m">
         <button className="primary" onClick={() => onReturn()}>
-          <SpaceBetween size="sm" direction="horizontal">
+          <SpaceBetween
+            size="sm"
+            direction="horizontal"
+            alignOverride="items-center"
+          >
             <Icons.Arrow className="size-5 cursor-pointer -rotate-90 inline-block" />
-            Return
+            <span>Return</span>
           </SpaceBetween>
         </button>
         {detail?.logo && (
           <img
             src={require(`../../../assets/${detail.logo}`)}
-            className="h-20 m-auto mt-8"
+            className="h-20 m-auto"
             aria-hidden
           />
         )}
@@ -90,22 +94,28 @@ export function CareerDetail({
             },
           ]}
         />
-        <h4 className="font-bold text-purple-dark">Details</h4>
-        <ul className="list-disc list-inside">
-          {detail?.content.map((content, i) => (
-            <li key={i} className="mb-3">
-              <span className="font-body">{content}</span>
-            </li>
+        <SpaceBetween size="xs">
+          <h4 className="font-bold text-purple-dark">Details</h4>
+          <ul className="list-disc list-inside">
+            {detail?.content.map((content, i) => (
+              <li key={i} className="mb-3">
+                <span className="font-body">{content}</span>
+              </li>
+            ))}
+          </ul>
+        </SpaceBetween>
+        <SpaceBetween size="xs">
+          <h4 className="font-bold text-purple-dark">Recognition</h4>
+          {detail?.recognition?.map(rec => (
+            <AwardDetail key={rec.title} {...rec} />
           ))}
-        </ul>
-        <h4 className="font-bold text-purple-dark">Recognition</h4>
-        {detail?.recognition?.map(rec => (
-          <AwardDetail key={rec.title} {...rec} />
-        ))}
-        <h4 className="font-bold text-purple-dark">Promotion History</h4>
-        {detail?.promotion?.map(promo => (
-          <PromoDetail key={promo.title} {...promo} />
-        ))}
+        </SpaceBetween>
+        <SpaceBetween size="xs">
+          <h4 className="font-bold text-purple-dark">Promotion History</h4>
+          {detail?.promotion?.map(promo => (
+            <PromoDetail key={promo.title} {...promo} />
+          ))}
+        </SpaceBetween>
       </SpaceBetween>
     </div>
   );
@@ -119,7 +129,7 @@ function AwardDetail({ date, title, details }: Award) {
         <h5>
           {title} - <i>{getMonthYearOrCurrent(date)}</i>
         </h5>
-        {details}
+        <p>{details}</p>
       </SpaceBetween>
     </div>
   );
@@ -129,9 +139,11 @@ function PromoDetail({ startDate, endDate, title }: Promo) {
   return (
     <div>
       <h5>{title}</h5>
-      <i>
-        {getMonthYearOrCurrent(startDate)} - {getMonthYearOrCurrent(endDate)}
-      </i>
+      <p>
+        <i>
+          {getMonthYearOrCurrent(startDate)} - {getMonthYearOrCurrent(endDate)}
+        </i>
+      </p>
     </div>
   );
 }

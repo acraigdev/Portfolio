@@ -87,10 +87,15 @@ export function Contact({}: ContactProps) {
           Want to talk more? I'd love to hear from you! Reach out below or
           contact me directly and I'll be in contact as soon as possible!
         </p>
-        <SpaceBetween direction="horizontal" size="sm" className="mb-6">
+        <SpaceBetween
+          direction="horizontal"
+          size="sm"
+          className="mb-6"
+          alignOverride="items-center"
+        >
           <Icons.Envelope className="size-6 inline-block" />
           <a className="link" href="mailto:alexandriamcraig@gmail.com">
-            alexandriamcraig@gmail.com
+            <span>alexandriamcraig@gmail.com</span>
           </a>
         </SpaceBetween>
         {sendState !== SendState.sent && (
@@ -139,7 +144,7 @@ export function Contact({}: ContactProps) {
             className="text-green-700 w-full"
           >
             <Icons.CheckCircle className="size-6 md:size-8 inline-block" />
-            Thank you! Your message was sent successfully.
+            <p>Thank you! Your message was sent successfully.</p>
           </SpaceBetween>
         )}
         {sendState === SendState.error && (
@@ -149,8 +154,10 @@ export function Contact({}: ContactProps) {
             className="text-red-700 w-full mt-4"
           >
             <Icons.Error className="size-6 md:size-8 inline-block" />
-            Something went wrong sending the message. Please try again or
-            contact directly.
+            <p>
+              Something went wrong sending the message. Please try again or
+              contact directly.
+            </p>
           </SpaceBetween>
         )}
       </ContentBox>

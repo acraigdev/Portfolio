@@ -39,7 +39,7 @@ export function CatFacts() {
         }
         className="primary flex items-center"
       >
-        Get new facts
+        <span>Get new facts</span>
         <PawSpinner isLoading={false} className="small" />
       </button>
     </>

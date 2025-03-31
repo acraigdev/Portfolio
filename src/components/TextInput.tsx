@@ -84,7 +84,7 @@ export function TextInput({
               onClick={() => onEnter?.()}
               aria-label="Add item"
             >
-              +
+              <span>+</span>
             </button>
           )}
         </div>

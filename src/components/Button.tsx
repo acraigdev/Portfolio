@@ -4,9 +4,15 @@ interface ButtonProps {
   label: ReactNode;
   onClick: () => void;
   variant?: 'primary' | 'secondary';
+  disabled?: boolean;
 }
 
-export function Button({ label, onClick, variant = 'primary' }: ButtonProps) {
+export function Button({
+  label,
+  onClick,
+  variant = 'primary',
+  disabled,
+}: ButtonProps) {
   return (
     <button
       onClick={e => {
@@ -14,8 +20,9 @@ export function Button({ label, onClick, variant = 'primary' }: ButtonProps) {
         onClick();
       }}
       className={variant}
+      disabled={disabled}
     >
-      {label}
+      <span>{label}</span>
     </button>
   );
 }
