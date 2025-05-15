@@ -54,7 +54,7 @@ export function About() {
             often useful things.
           </p>
         </Section>
-        <Section>
+        {/* <Section>
           <p>
             <i>
               This portfolio is a continuous work in progress to learn new
@@ -63,7 +63,7 @@ export function About() {
               motivated and passionate front end engineer!
             </i>
           </p>
-        </Section>
+        </Section> */}
       </ContentBox>
     </LayoutFrame>
   );

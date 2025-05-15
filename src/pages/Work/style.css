@@ -17,7 +17,7 @@
 
 @keyframes leftToRight {
   0% {
-    transform: translate(-110%);
+    transform: translate(-100%);
   }
   100% {
     transform: translate(0);

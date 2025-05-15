@@ -19,7 +19,7 @@ export function CareerPreview({ company, onLearnMore }: CareerPreviewProps) {
       />
       <div className="p-4 w-full text-center">
         <h3>{company.name}</h3>
-        <h4 className="font-normal">{company.title}</h4>
+        <h4 className="font-normal whitespace-nowrap">{company.title}</h4>
         <p>
           <i>
             {getMonthYearOrCurrent(company.startDate)} -{' '}

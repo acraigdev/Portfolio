@@ -8,7 +8,7 @@ interface TagProps {
 
 export function Tag({ tag, onTagRemove }: TagProps) {
   return (
-    <span className="bg-teal text-white py-1 px-2 rounded-sm min-w-fit">
+    <span className="bg-teal text-sm text-white py-1 px-2 rounded-lg min-w-fit">
       <span className={`font-body ${onTagRemove ? 'pr-1' : ''}`}>{tag}</span>
       {!!onTagRemove && (
         <button

@@ -15,10 +15,6 @@ export function CatFacts() {
     ...CatQueries.randomFacts({}),
   });
 
-  console.log(randomCat?.facts);
-
-  console.log(isFetching);
-
   if (isFetching)
     return <PawSpinner isLoading={isFetching} isDarkMode={true} />;
   return (

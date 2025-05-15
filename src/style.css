@@ -38,7 +38,7 @@ h5 {
 }
 
 p {
-  @apply font-body mb-2;
+  @apply font-body;
 }
 
 span {
@@ -54,12 +54,12 @@ a.link {
 }
 
 button {
-  @apply cursor-pointer font-bold;
+  @apply cursor-pointer font-bold rounded-full;
   &.primary {
-    @apply bg-purple-dark text-white py-2 px-6 rounded-lg;
+    @apply bg-purple-dark text-white py-2 px-6;
   }
   &.secondary {
-    @apply border-2 border-purple-dark text-purple-dark bg-purple-light py-2 px-6 rounded-lg;
+    @apply border-2 border-purple-dark text-purple-dark bg-purple-light py-2 px-6;
   }
 }
 

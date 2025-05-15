@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import { LayoutFrame } from '../../components/LayoutFrame';
 import { ContentBox } from '../../components/ContentBox';
 import { SpaceBetween } from '../../components/SpaceBetween';
-import {
-  collection,
-  getDocs,
-  orderBy,
-  query,
-  Timestamp,
-} from 'firebase/firestore';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { useQuery } from '@tanstack/react-query';
 import { Demo, Project } from '../../utils/dataTypes';
 import { db } from '../..';
@@ -19,9 +13,9 @@ import { Nullable } from '../../utils/typeHelpers';
 
 export function Projects() {
   const [selectedDemo, setSelectedDemo] = useState<Nullable<Demo>>(null);
-  const likelyMobile = window.innerWidth < 1000 || window.innerHeight < 750;
+  const likelyMobile = window.innerWidth < 768;
 
-  const { data: projects } = useQuery({
+  const { data: projectColumns } = useQuery({
     queryKey: ['getProjects'],
     queryFn: () => {
       return getDocs(
@@ -29,7 +23,15 @@ export function Projects() {
       );
     },
     select: res => {
-      return res.docs.map(doc => doc.data()) as Array<Project>;
+      const projects = res.docs.map(doc => doc.data()) as Array<Project>;
+      return projects.reduce(
+        (acc, p, i) => {
+          const index = i % 2;
+          acc[index].push(p);
+          return acc;
+        },
+        [[], []] as Array<Project[]>,
+      );
     },
   });
 
@@ -44,13 +46,19 @@ export function Projects() {
               the years.
             </p>
           </div>
-          {projects?.map(project => (
-            <ProjectSection
-              key={project.title}
-              {...project}
-              onDemoClick={demo => setSelectedDemo(demo)}
-            />
-          ))}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {[...Array(2)].fill('').map((_, i) => (
+              <div className="flex flex-col gap-6" key={i}>
+                {(projectColumns?.[i] ?? []).map(project => (
+                  <ProjectSection
+                    key={project.title}
+                    {...project}
+                    onDemoClick={demo => setSelectedDemo(demo)}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
         </SpaceBetween>
         {selectedDemo && (
           <Modal
@@ -88,6 +96,7 @@ export function Projects() {
     </LayoutFrame>
   );
 }
+
 function ProjectSection({
   title,
   code_url,
@@ -97,48 +106,49 @@ function ProjectSection({
   onDemoClick,
 }: Project & { onDemoClick: (demo: Demo) => void }) {
   return (
-    <div className="rounded-lg border border-gray-200 p-5 shadow-sm sm:flex items-start justify-between gap-2 w-full">
-      <div className="w-full sm:w-3/4">
+    <div className="rounded-lg border border-gray-200 p-5">
+      <SpaceBetween size="xs">
         <h3 className="text-purple-dark font-bold">{title}</h3>
         <p>{description}</p>
-        <div className="flex gap-2 flex-wrap w-full">
+        <div className="flex gap-1 flex-wrap w-full">
           {tech?.map(t => <Tag key={t} tag={t} />)}
         </div>
-      </div>
-      <div className="flex flex-col gap-1 mt-2 sm:mt-0 sm:items-end">
-        {code_url && (
-          <a
-            href={code_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Opens in a new tab"
-            className="block"
-          >
-            <button className="secondary flex justify-center w-full sm:w-auto">
-              <Icons.Code className="size-6 inline-block mr-2" />
-              <span className="no-underline">Code</span>
+        <div className="border-t border-gray-200 w-full my-3"></div>
+        <div className="flex gap-4 items-center justify-center w-full">
+          {code_url && (
+            <a
+              href={code_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Opens in a new tab"
+              className="block"
+            >
+              <button className="secondary flex justify-center w-full sm:w-auto">
+                <Icons.Code className="size-6 inline-block mr-2" />
+                <span className="no-underline">Code</span>
+              </button>
+            </a>
+          )}
+          {demo?.url && (
+            <button
+              className="secondary flex justify-center"
+              onClick={() => onDemoClick({ ...demo, title })}
+            >
+              <Icons.Demo className="size-6 inline-block mr-2" />
+              <span>Demo</span>
             </button>
-          </a>
-        )}
-        {demo?.url && (
-          <button
-            className="secondary flex justify-center"
-            onClick={() => onDemoClick({ ...demo, title })}
-          >
-            <Icons.Demo className="size-6 inline-block mr-2" />
-            <span>Demo</span>
-          </button>
-        )}
-        {demo?.image && (
-          <button
-            className="secondary flex justify-center"
-            onClick={() => onDemoClick({ ...demo, title })}
-          >
-            <Icons.Photo className="size-6 inline-block mr-2" />
-            <span>Photo</span>
-          </button>
-        )}
-      </div>
+          )}
+          {demo?.image && (
+            <button
+              className="secondary flex justify-center"
+              onClick={() => onDemoClick({ ...demo, title })}
+            >
+              <Icons.Photo className="size-6 inline-block mr-2" />
+              <span>Photo</span>
+            </button>
+          )}
+        </div>
+      </SpaceBetween>
     </div>
   );
 }
