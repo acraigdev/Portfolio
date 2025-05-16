@@ -20,6 +20,17 @@ export function Header() {
         <HeaderLink route={RouteData.Projects} />
         <HeaderLink route={RouteData.Contact} />
       </div>
+      <a
+        href="https://www.linkedin.com/in/alexandria-craig-77982410b/"
+        className="absolute top-2 right-2"
+        aria-label="Visit my LinkedIn profile"
+      >
+        <img
+          src={require(`../assets/linkedin.svg`)}
+          className="size-6"
+          alt="LinkedIn"
+        />
+      </a>
     </div>
   );
 }
