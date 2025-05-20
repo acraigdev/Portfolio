@@ -34,9 +34,9 @@ export function About() {
             fast-paced environments, and collaborating with teammates and stakeholders. 
           </p>
           <p>
-            Want to learn more? Click <Link to={RouteData.Work.path}>here</Link>{' '}
+            Want to learn more? Click <Link className="link" to={RouteData.Work.path}>here</Link>{' '}
           to see more of my work history or{' '}
-          <Link to={RouteData.Contact.path}>contact me directly</Link>!
+          <Link className="link" to={RouteData.Contact.path}>contact me directly</Link>!
           </p>
         </Section>
         <Section>
