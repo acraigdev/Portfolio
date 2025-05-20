@@ -14,7 +14,7 @@ export function About() {
         <h1 className="mb-4">I'm Allie</h1>
         <Section>
           <p>
-            Front end engineer in Colorado Springs, CO. Currently working at
+            Front-end leaning full stack engineer in Colorado Springs, CO. Currently working at
             Amazon Web Services on the{' '}
             <a className="link" href="https://aws.amazon.com/image-builder/">
               EC2 Image Builder
@@ -24,23 +24,19 @@ export function About() {
         </Section>
         <Section>
           <h2 className="mb-2">Developer</h2>
-          <p>
-            Starting my career as a full-stack developer, I found a passion in
+          <p className="mb-2">
+            At the beginning of my career, I found a passion in
             front-end development making intuitive, responsive, and accessible
             experiences for users. My understanding of both front-end and
             back-end allows me to bridge the gap between design and
             functionality to deliver dynamic, efficient and scalable solutions.
-            In addition to web development, I enjoy increasing developer
-            efficiency, tackling complex issues in fast-paced environments, and
-            collaborating with teammates while staying up-to-date on the latest
-            trends and standards.
+            I enjoy increasing developer efficiency, tackling complex issues in 
+            fast-paced environments, and collaborating with teammates and stakeholders. 
           </p>
           <p>
-            {/* Want to learn more? Click <Link to={RouteData.Work.path}>here</Link>{' '}
+            Want to learn more? Click <Link to={RouteData.Work.path}>here</Link>{' '}
           to see more of my work history or{' '}
-          <Link to={RouteData.Contact.path}>contact me directly</Link>! */}
-            Want to learn more?{' '}
-            <Link to={RouteData.Contact.path}>Contact me!</Link>
+          <Link to={RouteData.Contact.path}>contact me directly</Link>!
           </p>
         </Section>
         <Section>
