@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { LayoutFrame } from '../../components/LayoutFrame';
 import { ContentBox } from '../../components/ContentBox';
 import { Dropdown } from '../../components/Dropdown';
-import { Maybe, Nullable } from '../../utils/typeHelpers';
+import { Nullable } from '../../utils/typeHelpers';
 import { SpaceBetween } from '../../components/SpaceBetween';
 import { RandomDuck } from './components/RandomDuck';
 import { CatFacts } from './components/CatFacts';
+import { PokemonList } from './components/PokemonList';
+import { VirtualizationContextProvider } from '../../components/VirtualizedList/VirtualizationContext';
 
 // TODO: Dynamically build
 const Project = {
   duck: 'duck',
   cat: 'cat',
+  pokemon: 'pokemon',
 } as const;
 type Project = (typeof Project)[keyof typeof Project];
 
 const ProjectLabels: Record<Project, string> = {
   duck: 'Random duck',
   cat: 'Cat facts',
+  pokemon: 'Pokemon Virtualization',
 };
 
 export function Random() {
@@ -40,7 +44,16 @@ export function Random() {
               setSearchParams({ project: String(item) })
             }
           />
-          <SelectedProject project={selectedProject} />
+          <VirtualizationContextProvider
+            root={document.getElementById('virtual-container')}
+          >
+            <div
+              id="virtual-container"
+              className="h-96 overflow-y-scroll w-full"
+            >
+              <SelectedProject project={selectedProject} />
+            </div>
+          </VirtualizationContextProvider>
         </SpaceBetween>
       </ContentBox>
     </LayoutFrame>
@@ -54,6 +67,8 @@ function SelectedProject({ project }: { project: Nullable<Project> }) {
       return <RandomDuck />;
     case Project.cat:
       return <CatFacts />;
+    case Project.pokemon:
+      return <PokemonList />;
     default:
       return <></>;
   }
