@@ -9,12 +9,14 @@ import { RandomDuck } from './components/RandomDuck';
 import { CatFacts } from './components/CatFacts';
 import { PokemonList } from './components/PokemonList';
 import { VirtualizationContextProvider } from '../../components/VirtualizedList/VirtualizationContext';
+import { SearchableUser } from './components/SearchableUser';
 
 // TODO: Dynamically build
 const Project = {
   duck: 'duck',
   cat: 'cat',
   pokemon: 'pokemon',
+  user: 'user',
 } as const;
 type Project = (typeof Project)[keyof typeof Project];
 
@@ -22,6 +24,7 @@ const ProjectLabels: Record<Project, string> = {
   duck: 'Random duck',
   cat: 'Cat facts',
   pokemon: 'Pokemon Virtualization',
+  user: 'Searchable Dropdown',
 };
 
 export function Random() {
@@ -69,6 +72,8 @@ function SelectedProject({ project }: { project: Nullable<Project> }) {
       return <CatFacts />;
     case Project.pokemon:
       return <PokemonList />;
+    case Project.user:
+      return <SearchableUser />;
     default:
       return <></>;
   }
