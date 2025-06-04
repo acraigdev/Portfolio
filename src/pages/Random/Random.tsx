@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { LayoutFrame } from '../../components/LayoutFrame';
 import { ContentBox } from '../../components/ContentBox';
 import { Dropdown } from '../../components/Dropdown';
 import { Nullable } from '../../utils/typeHelpers';
@@ -33,33 +32,26 @@ export function Random() {
     ? (searchParams.get('project') as Project)
     : null;
   return (
-    <LayoutFrame>
-      <ContentBox>
-        <SpaceBetween size="l">
-          <Dropdown
-            label="Select a project"
-            items={Object.keys(Project).map(key => ({
-              label: ProjectLabels[key as Project],
-              value: key,
-            }))}
-            selected={selectedProject}
-            onSelectionChange={item =>
-              setSearchParams({ project: String(item) })
-            }
-          />
-          <VirtualizationContextProvider
-            root={document.getElementById('virtual-container')}
-          >
-            <div
-              id="virtual-container"
-              className="h-96 overflow-y-scroll w-full"
-            >
-              <SelectedProject project={selectedProject} />
-            </div>
-          </VirtualizationContextProvider>
-        </SpaceBetween>
-      </ContentBox>
-    </LayoutFrame>
+    <ContentBox>
+      <SpaceBetween size="l">
+        <Dropdown
+          label="Select a project"
+          items={Object.keys(Project).map(key => ({
+            label: ProjectLabels[key as Project],
+            value: key,
+          }))}
+          selected={selectedProject}
+          onSelectionChange={item => setSearchParams({ project: String(item) })}
+        />
+        <VirtualizationContextProvider
+          root={document.getElementById('virtual-container')}
+        >
+          <div id="virtual-container" className="h-96 overflow-y-scroll w-full">
+            <SelectedProject project={selectedProject} />
+          </div>
+        </VirtualizationContextProvider>
+      </SpaceBetween>
+    </ContentBox>
   );
 }
 
