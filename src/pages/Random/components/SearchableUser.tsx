@@ -18,6 +18,7 @@ export function SearchableUser() {
   const [selected, setSelected] = useState();
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
+  // Suspense and ErrorBoundary need to surround to catch
   const users = use(data);
 
   const debouncedQuery = useDebounce(query, 500);
