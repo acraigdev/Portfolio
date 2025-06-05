@@ -14,7 +14,7 @@
     transform-origin: 50% 150%;
 
     &.loading {
-      animation: rotateAround 500ms linear infinite;
+      animation: rotateAround 700ms linear infinite;
     }
 
     .bean {

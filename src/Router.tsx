@@ -5,6 +5,7 @@ import { WorkLazy } from './pages/Work/WorkLazy';
 import { ContactLazy } from './pages/Contact/ContactLazy';
 import { RandomLazy } from './pages/Random/RandomLazy';
 import { ProjectsLazy } from './pages/Projects/ProjectsLazy';
+import { LayoutFrame } from './components/LayoutFrame';
 
 export const RouteData = {
   Home: {
@@ -45,30 +46,36 @@ export const RouteData = {
 export const router = createBrowserRouter([
   {
     path: RouteData.Home.path,
-    handle: RouteData.About,
-    element: <AboutLazy />,
-  },
-  {
-    path: RouteData.Work.path,
-    handle: RouteData.Work,
-    element: <WorkLazy />,
-  },
-  // {
-  //   path: RouteData.Hobbies.path,
-  //   handle: RouteData.Hobbies,
-  // },
-  {
-    path: RouteData.Projects.path,
-    handle: RouteData.Projects,
-    element: <ProjectsLazy />,
-  },
-  {
-    path: RouteData.Contact.path,
-    handle: RouteData.Contact,
-    element: <ContactLazy />,
-  },
-  {
-    path: RouteData.Random.path,
-    element: <RandomLazy />,
+    element: <LayoutFrame />,
+    children: [
+      {
+        index: true,
+        handle: RouteData.About,
+        element: <AboutLazy />,
+      },
+      {
+        path: RouteData.Work.path,
+        handle: RouteData.Work,
+        element: <WorkLazy />,
+      },
+      // {
+      //   path: RouteData.Hobbies.path,
+      //   handle: RouteData.Hobbies,
+      // },
+      {
+        path: RouteData.Projects.path,
+        handle: RouteData.Projects,
+        element: <ProjectsLazy />,
+      },
+      {
+        path: RouteData.Contact.path,
+        handle: RouteData.Contact,
+        element: <ContactLazy />,
+      },
+      {
+        path: RouteData.Random.path,
+        element: <RandomLazy />,
+      },
+    ],
   },
 ]);

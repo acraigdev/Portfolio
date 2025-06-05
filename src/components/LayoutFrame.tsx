@@ -1,9 +1,9 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Header } from '../components/Header';
-import { useLocation, useMatches } from 'react-router-dom';
+import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 
-export function LayoutFrame({ children }: { children: ReactNode }) {
+export function LayoutFrame() {
   const { pathname } = useLocation();
   const route = useMatches()[0]?.handle;
   useEffect(() => {
@@ -17,7 +17,7 @@ export function LayoutFrame({ children }: { children: ReactNode }) {
         className="my-4 md:my-8 mx-3 lg:mx-auto xl:w-2/3 lg:w-3/4"
         key={pathname}
       >
-        {children}
+        <Outlet />
       </div>
     </div>
   );

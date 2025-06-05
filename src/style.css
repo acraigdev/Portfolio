@@ -6,9 +6,13 @@
   --color-gray-dark: #878c8f;
   --color-gray-light: #c4cad0;
   --color-teal: #005e66;
-  --font-fancy: 'Lavishly Yours', serif;
-  --font-body: 'Quicksand', serif;
-  --font-header: 'Montserrat', serif;
+  --font-fancy: 'Lavishly Yours';
+  --font-body: 'Quicksand';
+  --font-header: 'Montserrat';
+}
+
+body {
+  display: block;
 }
 
 h1,

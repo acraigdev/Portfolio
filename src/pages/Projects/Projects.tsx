@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { LayoutFrame } from '../../components/LayoutFrame';
 import { ContentBox } from '../../components/ContentBox';
 import { SpaceBetween } from '../../components/SpaceBetween';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
@@ -36,64 +35,62 @@ export function Projects() {
   });
 
   return (
-    <LayoutFrame>
-      <ContentBox>
-        <SpaceBetween size="m">
-          <div>
-            <h1 className="mb-4">Projects</h1>
-            <p>
-              A collection of personal development projects I've worked on over
-              the years.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {[...Array(2)].fill('').map((_, i) => (
-              <div className="flex flex-col gap-6" key={i}>
-                {(projectColumns?.[i] ?? []).map(project => (
-                  <ProjectSection
-                    key={project.title}
-                    {...project}
-                    onDemoClick={demo => setSelectedDemo(demo)}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        </SpaceBetween>
-        {selectedDemo && (
-          <Modal
-            title={selectedDemo.title}
-            onDismiss={() => setSelectedDemo(null)}
-          >
-            {selectedDemo.details && <p>{selectedDemo.details}</p>}
-            {selectedDemo.url &&
-              (likelyMobile ? (
-                <SpaceBetween
-                  direction="horizontal"
-                  size="sm"
-                  className="text-teal"
-                  alignOverride="items-center"
-                >
-                  <Icons.Star className="size-6 md:size-8 inline-block" />
-                  For the best experience, please visit this page on a larger
-                  device.
-                </SpaceBetween>
-              ) : (
-                <iframe
-                  src={selectedDemo.url}
-                  className="w-full aspect-video border border-gray-200"
+    <ContentBox>
+      <SpaceBetween size="m">
+        <div>
+          <h1 className="mb-4">Projects</h1>
+          <p>
+            A collection of personal development projects I've worked on over
+            the years.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {[...Array(2)].fill('').map((_, i) => (
+            <div className="flex flex-col gap-6" key={i}>
+              {(projectColumns?.[i] ?? []).map(project => (
+                <ProjectSection
+                  key={project.title}
+                  {...project}
+                  onDemoClick={demo => setSelectedDemo(demo)}
                 />
               ))}
-            {selectedDemo.image && (
-              <img
-                className="w-full lg:w-1/2 h-full object-contain"
-                src={`https://firebasestorage.googleapis.com/v0/b/acraigdev-8d7d6.firebasestorage.app/o/${selectedDemo.image}?alt=media`}
+            </div>
+          ))}
+        </div>
+      </SpaceBetween>
+      {selectedDemo && (
+        <Modal
+          title={selectedDemo.title}
+          onDismiss={() => setSelectedDemo(null)}
+        >
+          {selectedDemo.details && <p>{selectedDemo.details}</p>}
+          {selectedDemo.url &&
+            (likelyMobile ? (
+              <SpaceBetween
+                direction="horizontal"
+                size="sm"
+                className="text-teal"
+                alignOverride="items-center"
+              >
+                <Icons.Star className="size-6 md:size-8 inline-block" />
+                For the best experience, please visit this page on a larger
+                device.
+              </SpaceBetween>
+            ) : (
+              <iframe
+                src={selectedDemo.url}
+                className="w-full aspect-video border border-gray-200"
               />
-            )}
-          </Modal>
-        )}
-      </ContentBox>
-    </LayoutFrame>
+            ))}
+          {selectedDemo.image && (
+            <img
+              className="w-full lg:w-1/2 h-full object-contain"
+              src={`https://firebasestorage.googleapis.com/v0/b/acraigdev-8d7d6.firebasestorage.app/o/${selectedDemo.image}?alt=media`}
+            />
+          )}
+        </Modal>
+      )}
+    </ContentBox>
   );
 }
 
