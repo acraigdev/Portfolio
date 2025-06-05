@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ContentBox } from '../../components/ContentBox';
 import { Dropdown } from '../../components/Dropdown';
@@ -9,6 +9,8 @@ import { CatFacts } from './components/CatFacts';
 import { PokemonList } from './components/PokemonList';
 import { VirtualizationContextProvider } from '../../components/VirtualizedList/VirtualizationContext';
 import { SearchableUser } from './components/SearchableUser';
+import { ErrorBoundary } from '../../components/ErrorBoundary';
+import { PawSpinner } from '../../components/PawSpinner/PawSpinner';
 
 // TODO: Dynamically build
 const Project = {
@@ -43,13 +45,22 @@ export function Random() {
           selected={selectedProject}
           onSelectionChange={item => setSearchParams({ project: String(item) })}
         />
-        <VirtualizationContextProvider
-          root={document.getElementById('virtual-container')}
-        >
-          <div id="virtual-container" className="h-96 overflow-y-scroll w-full">
-            <SelectedProject project={selectedProject} />
-          </div>
-        </VirtualizationContextProvider>
+        <ErrorBoundary>
+          <Suspense
+            fallback={<PawSpinner isLoading={true} isDarkMode={true} />}
+          >
+            <VirtualizationContextProvider
+              root={document.getElementById('virtual-container')}
+            >
+              <div
+                id="virtual-container"
+                className="h-96 overflow-y-scroll w-full"
+              >
+                <SelectedProject project={selectedProject} />
+              </div>
+            </VirtualizationContextProvider>
+          </Suspense>
+        </ErrorBoundary>
       </SpaceBetween>
     </ContentBox>
   );
