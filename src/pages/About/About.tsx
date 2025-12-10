@@ -13,19 +13,19 @@ export function About() {
       <Section>
         <p>
           Front-end leaning full stack engineer in Colorado Springs, CO.
-          Currently working at Amazon Web Services on the{' '}
-          <a className="link" href="https://aws.amazon.com/image-builder/">
-            EC2 Image Builder
+          Currently working at{' '}
+          <a className="link" href="https://thrivemarket.com/">
+            Thrive Market
           </a>{' '}
-          team.
+          and loving the mission.
         </p>
       </Section>
       <Section>
         <h2 className="mb-2">Developer</h2>
         <p className="mb-2">
-          At the beginning of my career, I found a passion in front-end
+          Early in my career, I found a passion in front-end
           development making intuitive, responsive, and accessible experiences
-          for users. My understanding of both front-end and back-end allows me
+          for users. In short, I love crafting beautiful and usable things. My understanding of both front-end and back-end allows me
           to bridge the gap between design and functionality to deliver dynamic,
           efficient and scalable solutions. I enjoy increasing developer
           efficiency, tackling complex issues in fast-paced environments, and
