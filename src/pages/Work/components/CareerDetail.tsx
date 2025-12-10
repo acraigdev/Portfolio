@@ -104,18 +104,22 @@ export function CareerDetail({
             ))}
           </ul>
         </SpaceBetween>
-        <SpaceBetween size="xs">
-          <h4 className="font-bold text-purple-dark">Recognition</h4>
-          {detail?.recognition?.map(rec => (
-            <AwardDetail key={rec.title} {...rec} />
-          ))}
-        </SpaceBetween>
-        <SpaceBetween size="xs">
-          <h4 className="font-bold text-purple-dark">Promotion History</h4>
-          {detail?.promotion?.map(promo => (
-            <PromoDetail key={promo.title} {...promo} />
-          ))}
-        </SpaceBetween>
+        {detail?.recognition?.length && 
+          <SpaceBetween size="xs">
+            <h4 className="font-bold text-purple-dark">Recognition</h4>
+            {detail.recognition.map(rec => (
+              <AwardDetail key={rec.title} {...rec} />
+            ))}
+          </SpaceBetween>
+        }
+        {detail?.promotion?.length && 
+          <SpaceBetween size="xs">
+            <h4 className="font-bold text-purple-dark">Promotion History</h4>
+            {detail.promotion.map(promo => (
+              <PromoDetail key={promo.title} {...promo} />
+            ))}
+          </SpaceBetween>
+        }
       </SpaceBetween>
     </div>
   );
