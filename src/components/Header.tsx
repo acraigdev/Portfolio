@@ -21,7 +21,7 @@ export function Header() {
         <HeaderLink route={RouteData.Contact} />
       </div>
       <a
-        href="https://www.linkedin.com/in/alexandria-craig-77982410b/"
+        href="https://www.linkedin.com/in/allie-craig-77982410b/"
         className="absolute top-2 right-2"
         aria-label="Visit my LinkedIn profile"
       >
